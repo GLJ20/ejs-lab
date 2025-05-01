@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu</title>
+</head>
+<body>
+  <%- include("./partials/nav") %>
+  <h1>Full Menu</h1>
+   <!-- Initialize empty object to hold the categories and their items-->
+  <% const catgs = {} %>
+  <% menu.forEach((item) => { %>
+      
+     <% const whatcatg = item.category %>
+
+     <% if(!catgs[whatcatg]){ %>
+     <%    catgs[whatcatg] = [] %> <!--Initilaize an empty array for the key so main is key then its value is empty []-->
+     <% } %>
+     <% catgs[whatcatg].push(item) %> <!--Pushes the item into its categorys array -->
+      
+  <% }); %>
+ <!-- Display each category-->
+  <h2>Mains</h2>
+      <% catgs.mains.forEach(item => { %>
+        <%- include("./partials/item.ejs", {item}) %>
+     <% }) %>
+  <h2>Desserts</h2>
+     <% catgs.desserts.forEach(item => { %>
+       <%- include("./partials/item.ejs", {item}) %>
+     <% }) %>
+  <h2>Sides</h2>
+     <% catgs.sides.forEach(item => { %>
+       <%- include("./partials/item.ejs", {item}) %>
+     <% }) %>
+</body>
+</html>
